@@ -1,38 +1,22 @@
-// Buatlah program searching nama yang dapat dibatasi jumlah outputnya yang menerapkan  callback function dengan data sebagai berikut:
+/**
+ * Filter array items based on search criteria (query)
+ */
+function filterItems(query, limit, callback) {
+  const names = ["Abigail", "Alexandra", "Alison", "Amanda", "Angela", "Bella", "Carol", "Caroline", "Carolyn", "Deirdre", "Diana", "Elizabeth", "Ella", "Faith", "Olivia", "Penelope"];
 
-let nama = ["Abigail", "Alexandra", "Alison", "Amanda", "Angela", "Bella", "Carol", "Caroline", "Carolyn", "Deirdre", "Diana", "Elizabeth", "Ella", "Faith", "Olivia", "Penelope"];
+  const filterName = function (currentValue) {
+    return currentValue.toLowerCase().includes(query);
+  };
 
-// var ages = [32, 33, 16, 40];
+  const nameFiltered = names.filter(filterName);
 
-// function checkAdult(age) {
-//   return age >= 18;
-// }
+  const result = callback(nameFiltered, limit);
 
-// console.log(ages.filter(checkAdult));
-
-// console.log(name.filter("an"));
-
-let fruits = ["apple", "banana", "grapes", "mango", "orange"];
-
-// /**
-//  * Filter array items based on search criteria (query)
-//  */
-// function filterItems(arr, query) {
-//   return arr.filter(function (el) {
-//     return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-//   });
-// }
-
-// console.log(filterItems(nama, "an")); // ['apple', 'grapes']
-// // console.log(filterItems(fruits, "an")); // ['banana', 'mango', 'orange']
-
-function sayHello(name, callback) {
-  let greeting = `Hello ${name}`;
-  callback(greeting);
-}
-function showGreeting(quote) {
-  console.log(quote);
+  console.log(result);
 }
 
-// sayHello("Eka", showGreeting);
-console.log(showGreeting("hello"));
+function limiter(data, limit) {
+  return data.slice(0, limit);
+}
+
+filterItems("an", 3, limiter);
